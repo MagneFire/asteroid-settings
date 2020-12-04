@@ -54,8 +54,12 @@
 #include <QTimer>
 #include <QDebug>
 
-#include <mce/dbus-names.h>
-#include <mce/mode-names.h>
+//#include <mce/dbus-names.h>
+//#include <mce/mode-names.h>
+#define MCE_SERVICE                     "com.nokia.mce"
+#define MCE_SIGNAL_PATH                 "/com/nokia/mce/signal"
+#define MCE_REQUEST_PATH                "/com/nokia/mce/request"
+
 #include "mceiface.h"
 
 static const char *MceWristSensorEnabled = "/system/osso/dsm/display/wrist_sensor_enabled";
