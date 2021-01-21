@@ -22,7 +22,8 @@ OTHER_FILES += main.qml \
                PoweroffPage.qml \
                RebootPage.qml \
                RestartPage.qml \
-               AboutPage.qml
+               AboutPage.qml \
+               BtDevisesList.qml
 
 lupdate_only{ SOURCES += i18n/asteroid-settings.desktop.h }
 TRANSLATIONS = $$files(i18n/$$TARGET.*.ts)

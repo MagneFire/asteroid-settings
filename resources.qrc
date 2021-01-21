@@ -15,5 +15,6 @@
         <file>PoweroffPage.qml</file>
         <file>RebootPage.qml</file>
         <file>AboutPage.qml</file>
+        <file>BtDevisesList.qml</file>
     </qresource>
 </RCC>
