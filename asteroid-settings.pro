@@ -7,6 +7,8 @@ system(qdbusxml2cpp -p mceiface.h:mceiface.cpp mce.xml)
 
 SOURCES +=     main.cpp volumecontrol.cpp mceiface.cpp tilttowake.cpp taptowake.cpp
 HEADERS +=     volumecontrol.h tilttowake.h taptowake.h mceiface.h
+# CHANGE LINE BELOW!
+INCLUDEPATH += .
 RESOURCES +=   resources.qrc
 OTHER_FILES += main.qml \
                ListItem.qml \
