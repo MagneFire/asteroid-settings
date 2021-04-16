@@ -11,9 +11,17 @@
         <file>UnitsPage.qml</file>
         <file>WallpaperPage.qml</file>
         <file>WatchfacePage.qml</file>
+        <file>LauncherPage.qml</file>
         <file>USBPage.qml</file>
         <file>PoweroffPage.qml</file>
         <file>RebootPage.qml</file>
         <file>AboutPage.qml</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>images/diskBackground.svg</file>
+        <file>images/diskBackgroundPressed.svg</file>
+    </qresource>
+    <qresource prefix="/qml/">
+        <file alias="LauncherItemDelegate.qml">LauncherItemDelegate.qml</file>
     </qresource>
 </RCC>

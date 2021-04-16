@@ -127,5 +127,9 @@
         <source>Tap-to-wake</source>
         <translation>Tocca-per-riattivare</translation>
     </message>
+    <message id="id-launcher-page">
+        <source>Launcher</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

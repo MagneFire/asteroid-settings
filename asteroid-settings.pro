@@ -19,6 +19,7 @@ OTHER_FILES += main.qml \
                UnitsPage.qml \
                USBPage.qml \
                WatchfacePage.qml \
+               LauncherPage.qml \
                PoweroffPage.qml \
                RebootPage.qml \
                RestartPage.qml \

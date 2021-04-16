@@ -71,30 +71,30 @@
     </message>
     <message id="id-time-page">
         <location filename="../TimePage.qml" line="40"/>
-        <location filename="../main.qml" line="72"/>
+        <location filename="../main.qml" line="73"/>
         <source>Time</source>
         <translation>שעה</translation>
     </message>
     <message id="id-date-page">
         <location filename="../DatePage.qml" line="31"/>
-        <location filename="../main.qml" line="78"/>
+        <location filename="../main.qml" line="79"/>
         <source>Date</source>
         <translation>תאריך</translation>
     </message>
     <message id="id-language-page">
         <location filename="../LanguagePage.qml" line="31"/>
-        <location filename="../main.qml" line="84"/>
+        <location filename="../main.qml" line="85"/>
         <source>Language</source>
         <translation>שפה</translation>
     </message>
     <message id="id-bluetooth-page">
-        <location filename="../main.qml" line="90"/>
+        <location filename="../main.qml" line="91"/>
         <source>Bluetooth</source>
         <translation>Bluetooth</translation>
     </message>
     <message id="id-display-page">
         <location filename="../DisplayPage.qml" line="33"/>
-        <location filename="../main.qml" line="96"/>
+        <location filename="../main.qml" line="97"/>
         <source>Display</source>
         <translation>תצוגה</translation>
     </message>
@@ -119,44 +119,49 @@
         <translation>לגעת כדי להעיר</translation>
     </message>
     <message id="id-sound-page">
-        <location filename="../main.qml" line="102"/>
+        <location filename="../main.qml" line="103"/>
         <source>Sound</source>
         <translation>צליל</translation>
     </message>
     <message id="id-units-page">
         <location filename="../UnitsPage.qml" line="26"/>
-        <location filename="../main.qml" line="110"/>
+        <location filename="../main.qml" line="111"/>
         <source>Units</source>
         <translation>יחידות</translation>
     </message>
     <message id="id-wallpaper-page">
-        <location filename="../main.qml" line="116"/>
+        <location filename="../main.qml" line="117"/>
         <source>Wallpaper</source>
         <translation>תמונת רקע</translation>
     </message>
     <message id="id-watchface-page">
-        <location filename="../main.qml" line="122"/>
+        <location filename="../main.qml" line="123"/>
         <source>Watchface</source>
         <translation>פני השעון</translation>
     </message>
     <message id="id-usb-page">
         <location filename="../USBPage.qml" line="29"/>
-        <location filename="../main.qml" line="128"/>
+        <location filename="../main.qml" line="135"/>
         <source>USB</source>
         <translation>USB</translation>
     </message>
+    <message id="id-launcher-page">
+        <location filename="../main.qml" line="129"/>
+        <source>Launcher</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="id-poweroff-page">
-        <location filename="../main.qml" line="134"/>
+        <location filename="../main.qml" line="141"/>
         <source>Power Off</source>
         <translation>כיבוי</translation>
     </message>
     <message id="id-reboot-page">
-        <location filename="../main.qml" line="140"/>
+        <location filename="../main.qml" line="147"/>
         <source>Reboot</source>
         <translation>הפעלה מחדש</translation>
     </message>
     <message id="id-about-page">
-        <location filename="../main.qml" line="146"/>
+        <location filename="../main.qml" line="153"/>
         <source>About</source>
         <translation>על אודות</translation>
     </message>
