@@ -1,4 +1,5 @@
 /*
+ * Copyright (C) 2021 - Darrel Griët <dgriet@gmail.com>
  * Copyright (C) 2016 - Sylvia van Os <iamsylvie@openmailbox.org>
  * Copyright (C) 2015 - Florent Revest <revestflo@gmail.com>
  *
@@ -19,13 +20,27 @@
 import QtQuick 2.9
 import org.asteroid.controls 1.0
 import org.asteroid.utils 1.0
-import org.asteroid.settings 1.0
+import org.asteroid.settings 1.0 //
 
 Application {
     id: app
 
     centerColor: "#0044A6"
     outerColor: "#00010C"
+    /*Component { id: timeLayer;       Item       { } } //TimePage
+    Component { id: dateLayer;       Item       { } } //DatePage
+    Component { id: languageLayer;   Item   { } } //LanguagePage
+    Component { id: bluetoothLayer;  Item  { } } //BluetoothPage
+    Component { id: displayLayer;    Item    { } } //DisplayPage
+    Component { id: soundLayer;      Item      { } } //SoundPage
+    Component { id: unitsLayer;      Item      { } } //UnitsPage
+    Component { id: wallpaperLayer;  Item  { } } //WallpaperPage
+    Component { id: watchfaceLayer;  Item  { } } //WatchfacePage
+    Component { id: launcherLayer;   Item  { } } //LauncherPage
+    Component { id: usbLayer;        Item        { } } //USBPage
+    Component { id: poweroffLayer;   Item   { } } //PoweroffPage
+    Component { id: rebootLayer;     Item     { } } //RebootPage
+    Component { id: aboutLayer;      Item      { } } //AboutPage*/
 
     Component { id: timeLayer;       TimePage       { } }
     Component { id: dateLayer;       DatePage       { } }
@@ -36,12 +51,13 @@ Application {
     Component { id: unitsLayer;      UnitsPage      { } }
     Component { id: wallpaperLayer;  WallpaperPage  { } }
     Component { id: watchfaceLayer;  WatchfacePage  { } }
-    Component { id: launcherLayer;   LauncherPage  { } }
+    Component { id: launcherLayer;   LauncherPage   { } }
     Component { id: usbLayer;        USBPage        { } }
     Component { id: poweroffLayer;   PoweroffPage   { } }
     Component { id: rebootLayer;     RebootPage     { } }
     Component { id: aboutLayer;      AboutPage      { } }
 
+    //Item { id: tiltToWake } //TiltToWake
     TiltToWake { id: tiltToWake }
 
     LayerStack {
@@ -52,110 +68,167 @@ Application {
     Component {
         id: firstPageComponent
 
-        Flickable {
-            function elementsNb() {
-                var nb = 13;
-                if(DeviceInfo.hasSpeaker) nb ++
-                return nb;
-            }
-            contentHeight: elementsNb()*Dims.h(16) + (DeviceInfo.hasRoundScreen ? Dims.h(20) : 0)
-            contentWidth: width
-            boundsBehavior: Flickable.DragOverBounds
-            flickableDirection: Flickable.VerticalFlick
-
-            Column {
+        Item {
+            ListView {
+                id: appsView
                 anchors.fill: parent
+                //preferredHighlightBegin: appsView.height/2 - appsView.height/12
+                //preferredHighlightEnd: appsView.height/2 + appsView.height/12
+                //highlightRangeMode: ListView.StrictlyEnforceRange
 
-                Item { width: parent.width; height: DeviceInfo.hasRoundScreen ? Dims.h(10) : 0 }
+                model: ListModel {
+                    Component.onCompleted: {
+                        append({
+                            //% "Time"
+                            title: qsTrId("id-time-page"),
+                            iconName: "ios-clock-outline",
+                            newLayer: timeLayer
+                        })
+                        append({
+                            //% "Date"
+                            title: qsTrId("id-date-page"),
+                            iconName: "ios-calendar-outline",
+                            newLayer: dateLayer
+                        })
 
-                ListItem {
-                    //% "Time"
-                    title: qsTrId("id-time-page")
-                    iconName: "ios-clock-outline"
-                    onClicked: layerStack.push(timeLayer)
+                        append({
+                            //% "Language"
+                            title: qsTrId("id-language-page"),
+                            iconName: "ios-globe-outline",
+                            newLayer: languageLayer
+                        })
+                        append({
+                            //% "Bluetooth"
+                            title: qsTrId("id-bluetooth-page"),
+                            iconName: "ios-bluetooth-outline",
+                            newLayer: bluetoothLayer
+                        })
+                        append({
+                            //% "Display"
+                            title: qsTrId("id-display-page"),
+                            iconName: "ios-sunny-outline",
+                            newLayer: displayLayer
+                        })
+                        if (DeviceInfo.hasSpeaker) {
+                            append({
+                                //% "Sound"
+                                title: qsTrId("id-sound-page"),
+                                iconName: "ios-volume-up",
+                                newLayer: soundLayer
+                            })
+                        }
+                        append({
+                            //% "Units"
+                            title: qsTrId("id-units-page"),
+                            iconName: "ios-speedometer-outline",
+                            newLayer: unitsLayer
+                        })
+                        append({
+                            //% "Wallpaper"
+                            title: qsTrId("id-wallpaper-page"),
+                            iconName: "ios-images-outline",
+                            newLayer: wallpaperLayer
+                        })
+                        append({
+                            //% "Watchface"
+                            title: qsTrId("id-watchface-page"),
+                            iconName: "ios-color-wand-outline",
+                            newLayer: watchfaceLayer
+                        })
+                        append({
+                            //% "Launcher"
+                            title: qsTrId("id-launcher-page"),
+                            iconName: "ios-apps-outline",
+                            newLayer: launcherLayer
+                        })
+                        append({
+                            //% "USB"
+                            title: qsTrId("id-usb-page"),
+                            iconName: "ios-usb",
+                            newLayer: usbLayer
+                        })
+                        append({
+                            //% "Power Off"
+                            title: qsTrId("id-poweroff-page"),
+                            iconName: "ios-power-outline",
+                            newLayer: poweroffLayer
+                        })
+                        append({
+                            //% "Reboot"
+                            title: qsTrId("id-reboot-page"),
+                            iconName: "ios-sync",
+                            newLayer: rebootLayer
+                        })
+                        append({
+                            //% "About"
+                            title: qsTrId("id-about-page"),
+                            iconName: "ios-help-circle-outline",
+                            newLayer: aboutLayer
+                        })
+                    }
                 }
-                ListItem {
-                    //% "Date"
-                    title: qsTrId("id-date-page")
-                    iconName: "ios-calendar-outline"
-                    onClicked: layerStack.push(dateLayer)
-                }
-                ListItem {
-                    //% "Language"
-                    title: qsTrId("id-language-page")
-                    iconName: "ios-globe-outline"
-                    onClicked: layerStack.push(languageLayer)
-                }
-                ListItem {
-                    //% "Bluetooth"
-                    title: qsTrId("id-bluetooth-page")
-                    iconName: "ios-bluetooth-outline"
-                    onClicked: layerStack.push(bluetoothLayer)
-                }
-                ListItem {
-                    //% "Display"
-                    title: qsTrId("id-display-page")
-                    iconName: "ios-sunny-outline"
-                    onClicked: layerStack.push(displayLayer)
-                }
-                ListItem {
-                    //% "Sound"
-                    title: qsTrId("id-sound-page")
-                    iconName: "ios-volume-up"
-                    onClicked: layerStack.push(soundLayer)
-                    height: DeviceInfo.hasSpeaker ? Dims.h(16) : 0
-                    clip: true
-                }
-                ListItem {
-                    //% "Units"
-                    title: qsTrId("id-units-page")
-                    iconName: "ios-speedometer-outline"
-                    onClicked: layerStack.push(unitsLayer)
-                }
-                ListItem {
-                    //% "Wallpaper"
-                    title: qsTrId("id-wallpaper-page")
-                    iconName: "ios-images-outline"
-                    onClicked: layerStack.push(wallpaperLayer)
-                }
-                ListItem {
-                    //% "Watchface"
-                    title: qsTrId("id-watchface-page")
-                    iconName: "ios-color-wand-outline"
-                    onClicked: layerStack.push(watchfaceLayer)
-                }
-                ListItem {
-                    //% "Launcher"
-                    title: qsTrId("id-launcher-page")
-                    iconName: "ios-apps-outline"
-                    onClicked: layerStack.push(launcherLayer)
-                }
-                ListItem {
-                    //% "USB"
-                    title: qsTrId("id-usb-page")
-                    iconName: "ios-usb"
-                    onClicked: layerStack.push(usbLayer)
-                }
-                ListItem {
-                    //% "Power Off"
-                    title: qsTrId("id-poweroff-page")
-                    iconName: "ios-power-outline"
-                    onClicked: layerStack.push(poweroffLayer)
-                }
-                ListItem {
-                    //% "Reboot"
-                    title: qsTrId("id-reboot-page")
-                    iconName: "ios-sync"
-                    onClicked: layerStack.push(rebootLayer)
-                }
-                ListItem {
-                    //% "About"
-                    title: qsTrId("id-about-page")
-                    iconName: "ios-help-circle-outline"
-                    onClicked: layerStack.push(aboutLayer)
-                }
+                header: Item { width: parent.width; height: DeviceInfo.hasRoundScreen ? Dims.h(10) : 0 }
+                footer: Item { width: parent.width; height: DeviceInfo.hasRoundScreen ? Dims.h(10) : 0 }
+                delegate: MouseArea {
+                    // We want items to move to the left when an item is near the middle of the screen:
+                    //  / 1
+                    // | 2
+                    //  \ 3
+                    // To achieve this we need to know the current y location of the element. This is provided by the FileModel.
+                    // Using the index of the item and the current location of the top of the listview(contentY) we can find the location of a specific item.
+                    // Next we use the Pythagoras rule (x^2+y^2=r^2) to align the item around the left edge.
+                    // Rewriting Pythagoras rule: sqrt(r^2 - y^2) => sqrt(listview_height/2^2 - location_item_y^2)
+                    // Finally we add a small padding (Dims.w(5)) so that the item is not touching the left 'bezel'.
+                    //property var screenRadius: appsView.height/2
+                    //property var itemLocationY: (item.height * (appsView.contentY/item.height - index) - item.height/2)
+                    //property var bezelOffset: screenRadius - Math.sqrt(Math.pow(screenRadius, 2) - Math.pow((screenRadius + itemLocationY),2))
+                    //property var normalizedBezelOffset: 1.0 - (bezelOffset / screenRadius)
 
-                Item { width: parent.width; height: DeviceInfo.hasRoundScreen ? Dims.h(10) : 0 }
+                    id: item
+                    height: appsView.height/6
+                    width: appsView.width
+                    enabled: !appsView.dragging
+                    //opacity: normalizedBezelOffset
+
+                    onClicked: layerStack.push(newLayer)
+
+                    Item {
+                        anchors.fill: parent
+                        //width: parent.width
+                        //height: parent.height
+                        //anchors.left: parent.left
+                        //anchors.leftMargin: (DeviceInfo.hasRoundScreen ? bezelOffset : 0) + Dims.w(5)
+
+                        Icon {
+                            id: icon
+                            width: parent.height
+                            height: width
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.left: parent.left
+                            anchors.leftMargin: Dims.w(15)
+                            name: iconName
+                        }
+                        Label {
+                            id: iconText
+                            anchors.left: icon.right
+                            width: parent.width
+                            //anchors.leftMargin: parent.width * 0.04
+                            anchors.verticalCenter: parent.verticalCenter
+                            //font.pixelSize: (Math.exp((normalizedBezelOffset)) - 1) * Dims.l(6)
+                            font.pixelSize: Dims.l(6)
+                            //font.letterSpacing: Dims.l(0.2)
+                            anchors.leftMargin: Dims.w(12)
+                            //font.styleName: "Bold"
+                            //style: (normalizedBezelOffset >= 0.99) ? Text.Outline : Text.Normal
+                            text: title
+                        }
+                    }
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "white"
+                        opacity: containsPress ? 0.2 : 0
+                    }
+                }
             }
         }
     }
