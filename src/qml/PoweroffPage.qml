@@ -22,6 +22,7 @@ import Nemo.DBus 2.0
 
 Item {
     id: root
+    property var overlay
     property var pop
 
     Label {
@@ -45,7 +46,12 @@ Item {
         anchors.horizontalCenterOffset: Dims.w(15)
         anchors.bottom: parent.bottom
         anchors.bottomMargin: Dims.h(15)
-        onClicked: dsmeDbus.call("req_shutdown", [])
+        onClicked: overlay.start()
+    }
+
+    Connections {
+        target: overlay
+        function onFinished() { dsmeDbus.call("req_shutdown", []) }
     }
 
     DBusInterface {

@@ -143,13 +143,13 @@ Application {
                     //% "Power Off"
                     title: qsTrId("id-poweroff-page")
                     iconName: "ios-power-outline"
-                    onClicked: layerStack.push(poweroffLayer)
+                    onClicked: layerStack.push(poweroffLayer, {"overlay": shutdownOverlay})
                 }
                 ListItem {
                     //% "Reboot"
                     title: qsTrId("id-reboot-page")
                     iconName: "ios-sync"
-                    onClicked: layerStack.push(rebootLayer)
+                    onClicked: layerStack.push(rebootLayer, {"overlay": shutdownOverlay})
                 }
                 ListItem {
                     //% "About"
@@ -161,5 +161,13 @@ Application {
                 Item { width: parent.width; height: Dims.h(10); visible: DeviceInfo.hasRoundScreen }
             }
         }
+    }
+
+    ShutdownOverlay {
+        id: shutdownOverlay
+        app: app
+        anchors.fill: parent
+        visible: false
+        onStarted: layerStack.visible = false
     }
 }
