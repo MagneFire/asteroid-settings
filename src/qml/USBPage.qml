@@ -19,6 +19,7 @@
 import QtQuick 2.9
 import Nemo.DBus 2.0
 import org.asteroid.controls 1.0
+// import org.asteroid.settings 1.0
 
 Item {
     id: root
@@ -32,24 +33,29 @@ Item {
     ListModel {
         id: usbModesModel
         //% "Charging only"
-        ListElement { title: qsTrId("id-charging-only"); mode: "charging_only" }
+        ListElement { text: qsTrId("id-charging-only"); icon: "ios-battery-charging"; mode: "charging_only" }
         //% "ADB Mode"
-        ListElement { title: qsTrId("id-adb-mode"); mode: "adb_mode" }
+        ListElement { text: qsTrId("id-adb-mode"); icon: "ios-bug-outline"; mode: "adb_mode" }
         //% "SSH Mode"
-        ListElement { title: qsTrId("id-ssh-mode"); mode: "developer_mode" }
+        ListElement { text: qsTrId("id-ssh-mode"); icon: "ios-git-network"; mode: "developer_mode" }
         //% "MTP Mode"
-        ListElement { title: qsTrId("id-mtp-mode"); mode: "mtp_mode" }
+        ListElement { text: qsTrId("id-mtp-mode"); icon: "ios-folder-outline"; mode: "mtp_mode" }
     }
 
-    Spinner {
+    ListView {
         id: usbModeLV
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.top: title.bottom
-        height: Dims.h(60)
+        anchors.fill: parent
         model: usbModesModel
+        delegate: ListItem {
+            title: text
+            iconName: icon
+            highlight: usbModeLV.currentIndex == index ? 0.2 : 0
+            onClicked: usbModeLV.currentIndex = index
+        }
 
-        delegate: SpinnerDelegate { text: title }
+        preferredHighlightBegin: height / 2 - Dims.h(21)
+        preferredHighlightEnd: height / 2 + Dims.h(21)
+        highlightRangeMode: ListView.StrictlyEnforceRange
     }
 
     IconButton {
