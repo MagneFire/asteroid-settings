@@ -36,11 +36,6 @@ Item {
         defaultValue: false
     }
 
-    PageHeader {
-        id: title
-        text: qsTrId("id-time-page")
-    }
-
     Row {
         id: timeSelector
         anchors {
@@ -48,7 +43,7 @@ Item {
             leftMargin: DeviceInfo.hasRoundScreen ? Dims.w(5) : 0
             right: parent.right
             rightMargin: DeviceInfo.hasRoundScreen ? Dims.w(5) : 0
-            top: title.bottom
+            verticalCenter: parent.verticalCenter
         }
         height: Dims.h(60)
 

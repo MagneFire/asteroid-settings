@@ -50,11 +50,6 @@ Item {
         defaultValue: false
     }
 
-    PageHeader {
-        id: title
-        text: qsTrId("id-nightstand-page")
-    }
-
     Flickable {
         anchors.fill: parent
         contentHeight: onOffSettings.implicitHeight

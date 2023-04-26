@@ -30,11 +30,6 @@ Item {
     property int regionLevel: 0
     property string regionPath: ""
 
-    PageHeader {
-        id: title
-        text: qsTrId("id-timezone-page")
-    }
-
     onTimezoneListChanged: {
         var processedRegionList = [];
         var i = 0;
@@ -83,7 +78,7 @@ Item {
         id: timezoneSpinner
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.top: title.bottom
+        anchors.verticalCenter: parent.verticalCenter
         height: Dims.h(60)
         model: timezoneModel
 

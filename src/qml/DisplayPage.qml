@@ -34,11 +34,6 @@ Item {
         defaultValue: DeviceInfo.needsBurnInProtection
     }
 
-    PageHeader {
-        id: title
-        text: qsTrId("id-display-page")
-    }
-
     Flickable {
         anchors.fill: parent
         contentHeight: Dims.h(30) + 4*Dims.h(34) + (DeviceInfo.needsBurnInProtection ? Dims.h(34) : 0)

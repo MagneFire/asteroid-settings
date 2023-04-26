@@ -26,16 +26,11 @@ Item {
 
     LanguageModel { id: langSettings }
 
-    PageHeader {
-        id: title
-        text: qsTrId("id-language-page")
-    }
-
     Spinner {
         id: langLV
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.top: title.bottom
+        anchors.verticalCenter: parent.verticalCenter
         height: Dims.h(60)
         model: langSettings
 

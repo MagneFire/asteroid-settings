@@ -27,11 +27,6 @@ Item {
 
     DateTimeSettings { id: dtSettings }
 
-    PageHeader {
-        id: title
-        text: qsTrId("id-date-page")
-    }
-
     Row {
         id: dateSelector
         anchors {
@@ -39,7 +34,7 @@ Item {
             leftMargin: DeviceInfo.hasRoundScreen ? Dims.w(5) : 0
             right: parent.right
             rightMargin: DeviceInfo.hasRoundScreen ? Dims.w(5) : 0
-            top: title.bottom
+            verticalCenter: parent.verticalCenter
         }
         height: Dims.h(60)
 

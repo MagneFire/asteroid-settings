@@ -25,11 +25,6 @@ Item {
     id: root
     property var pop
 
-    PageHeader {
-        id: title
-        text: qsTrId("id-usb-page")
-    }
-
     ListModel {
         id: usbModesModel
         //% "Charging only"

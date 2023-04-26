@@ -24,11 +24,6 @@ import Nemo.DBus 2.0
 
 Item {
 
-    PageHeader {
-        id: title
-        text: qsTrId("id-power-page")
-    }
-
     ListModel {
         id: powerModel
         //% "Power Off"
