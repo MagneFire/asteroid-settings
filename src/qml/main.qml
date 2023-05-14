@@ -17,7 +17,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.9
+import QtQuick 2.15
 import org.asteroid.controls 1.0
 import org.asteroid.utils 1.0
 import org.asteroid.settings 1.0
@@ -57,10 +57,23 @@ Application {
         id: firstPageComponent
 
         Flickable {
+            id: root
             contentHeight: settingsColumn.implicitHeight
             contentWidth: width
             boundsBehavior: Flickable.DragOverBounds
             flickableDirection: Flickable.VerticalFlick
+
+            WheelHandler {
+                property: "contentY"
+                target: root
+                rotationScale: -0.5
+                onRotationChanged: {
+                    // Avoid overshoot at the top.
+                    if (root.contentHeight <= root.contentY + root.height) {
+                        root.contentY = root.contentHeight - root.height
+                    }
+                }
+            }
 
             Column {
                 id: settingsColumn
